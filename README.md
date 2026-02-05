@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SIGED-IA: Sistema de Gestión Documental Inteligente
 
-## Getting Started
+**SIGED-IA** es una aplicación web moderna diseñada para transformar la gestión documental en departamentos jurídicos institucionales. Este proyecto se centra en ofrecer una interfaz minimalista, eficiente y profesional, integrando conceptos de Inteligencia Artificial para la asistencia legal.
 
-First, run the development server:
+## 🎯 Propósito del Proyecto
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+El objetivo de SIGED-IA es optimizar el flujo de trabajo de los abogados y personal administrativo mediante:
+- **Centralización de documentos:** Un único lugar para contratos, demandas y actas.
+- **Interfaz Intuitiva:** Diseño limpio que reduce la carga cognitiva y facilita la navegación.
+- **Asistencia con IA:** (Concepto de diseño) Un chat integrado para consultas rápidas sobre expedientes y leyes.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Tecnologías Utilizadas
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Este proyecto ha sido construido utilizando las últimas tecnologías de desarrollo web para garantizar rendimiento y escalabilidad:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Framework Principal:** [Next.js 14+](https://nextjs.org/) (App Router)
+- **Lenguaje:** [TypeScript](https://www.typescriptlang.org/) para mayor robustez y tipado estático.
+- **Estilos:** **CSS Modules** con variables CSS nativas para un diseño encapsulado y fácil de mantener.
+- **Iconografía:** [Lucide React](https://lucide.dev/) para iconos modernos y consistentes.
+- **Fuente:** **Inter** (Google Fonts) para legibilidad en pantallas.
 
-## Learn More
+## 🎨 Diseño y Funcionalidades Implementadas
 
-To learn more about Next.js, take a look at the following resources:
+Actualmente, el proyecto cuenta con la estructura visual y de experiencia de usuario (UI/UX) completa:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 1. Sistema de Diseño (Dark Mode)
+- Paleta de colores institucional basada en tonos oscuros (`#121212`, `#1E1E1E`) para reducir la fatiga visual.
+- Tipografía profesional y jerarquía visual clara.
+- Diseño totalmente **Responsive** (adaptable a móviles y escritorio).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 2. Módulos de la Interfaz
 
-## Deploy on Vercel
+#### 🔐 Login Institucional
+- Pantalla de acceso minimalista.
+- Validación visual de credenciales (Simulación).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### 📊 Dashboard Principal
+Panel de control centralizado que incluye:
+- **Sidebar de Navegación:** Acceso rápido a Inicio, Documentos, Carpetas, Chat IA, etc.
+- **Zona de Carga (Upload Zone):** Área interactiva con diseño "Drag & Drop" para subir archivos.
+- **Grid de Carpetas:** Visualización organizada de expedientes por categorías.
+- **Tabla de Documentos:** Listado detallado con metadatos (nombre, fecha, tamaño, tipo).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+#### 🤖 Chat con Inteligencia Artificial
+- Widget de asistente legal integrado en la interfaz.
+- Diseño de conversación para consultas sobre documentos (Simulación visual).
+
+## 🚀 Instalación y Ejecución
+
+Para correr este proyecto localmente:
+
+1.  **Clonar el repositorio:**
+    ```bash
+    git clone https://github.com/Zzsososa/SIGED-IA.git
+    cd SIGED-IA/siged-ia
+    ```
+
+2.  **Instalar dependencias:**
+    ```bash
+    npm install
+    ```
+
+3.  **Iniciar servidor de desarrollo:**
+    ```bash
+    npm run dev
+    ```
+
+4.  Abrir [http://localhost:3000](http://localhost:3000) en tu navegador.
+
+---
+*Desarrollado para la modernización de la gestión jurídica.*
