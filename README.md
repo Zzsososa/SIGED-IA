@@ -2,14 +2,14 @@
 
 **SIGED-IA** es una aplicación web moderna diseñada para transformar la gestión documental en departamentos jurídicos institucionales. Este proyecto se centra en ofrecer una interfaz minimalista, eficiente y profesional, integrando conceptos de Inteligencia Artificial para la asistencia legal.
 
-## 🎯 Propósito del Proyecto
+##  Propósito del Proyecto
 
 El objetivo de SIGED-IA es optimizar el flujo de trabajo de los abogados y personal administrativo mediante:
 - **Centralización de documentos:** Un único lugar para contratos, demandas y actas.
 - **Interfaz Intuitiva:** Diseño limpio que reduce la carga cognitiva y facilita la navegación.
 - **Asistencia con IA:** (Concepto de diseño) Un chat integrado para consultas rápidas sobre expedientes y leyes.
 
-## 🛠️ Tecnologías Utilizadas
+##  Tecnologías Utilizadas
 
 Este proyecto ha sido construido utilizando las últimas tecnologías de desarrollo web para garantizar rendimiento y escalabilidad:
 
@@ -19,7 +19,7 @@ Este proyecto ha sido construido utilizando las últimas tecnologías de desarro
 - **Iconografía:** [Lucide React](https://lucide.dev/) para iconos modernos y consistentes.
 - **Fuente:** **Inter** (Google Fonts) para legibilidad en pantallas.
 
-## 🎨 Diseño y Funcionalidades Implementadas
+##  Diseño y Funcionalidades Implementadas
 
 Actualmente, el proyecto cuenta con la estructura visual y de experiencia de usuario (UI/UX) completa:
 
@@ -30,22 +30,22 @@ Actualmente, el proyecto cuenta con la estructura visual y de experiencia de usu
 
 ### 2. Módulos de la Interfaz
 
-#### 🔐 Login Institucional
+####  Login Institucional
 - Pantalla de acceso minimalista.
 - Validación visual de credenciales (Simulación).
 
-#### 📊 Dashboard Principal
+####  Dashboard Principal
 Panel de control centralizado que incluye:
 - **Sidebar de Navegación:** Acceso rápido a Inicio, Documentos, Carpetas, Chat IA, etc.
 - **Zona de Carga (Upload Zone):** Área interactiva con diseño "Drag & Drop" para subir archivos.
 - **Grid de Carpetas:** Visualización organizada de expedientes por categorías.
 - **Tabla de Documentos:** Listado detallado con metadatos (nombre, fecha, tamaño, tipo).
 
-#### 🤖 Chat con Inteligencia Artificial
+####  Chat con Inteligencia Artificial
 - Widget de asistente legal integrado en la interfaz.
 - Diseño de conversación para consultas sobre documentos (Simulación visual).
 
-## 🚀 Instalación y Ejecución
+##  Instalación y Ejecución
 
 Para correr este proyecto localmente:
 
