@@ -1,0 +1,39 @@
+.zone {
+    border: 2px dashed var(--border);
+    border-radius: 1rem;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--surface);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    height: 100%;
+}
+
+.zone:hover {
+    border-color: var(--accent);
+    background-color: var(--surface-hover);
+}
+
+.icon {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.text {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.highlight {
+    color: var(--accent);
+    font-weight: 500;
+}
+
+.subtext {
+    color: #666;
+    font-size: 0.75rem;
+}

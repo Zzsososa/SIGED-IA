@@ -1,0 +1,94 @@
+.container {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    /* Fixed height for demo */
+}
+
+.header {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--text-primary);
+}
+
+.sparkle {
+    color: var(--accent);
+}
+
+.messages {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 0.875rem;
+}
+
+.messageBot {
+    background-color: #2a2a2a;
+    padding: 0.75rem;
+    border-radius: 0.75rem 0.75rem 0.75rem 0;
+    align-self: flex-start;
+    max-width: 85%;
+    color: var(--text-secondary);
+}
+
+.messageUser {
+    background-color: var(--accent);
+    color: #121212;
+    padding: 0.75rem;
+    border-radius: 0.75rem 0.75rem 0 0.75rem;
+    align-self: flex-end;
+    max-width: 85%;
+    font-weight: 500;
+}
+
+.inputArea {
+    padding: 1rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 0.5rem;
+}
+
+.input {
+    flex: 1;
+    background-color: transparent;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    color: var(--text-primary);
+    font-family: inherit;
+    outline: none;
+}
+
+.input:focus {
+    border-color: var(--accent);
+}
+
+.sendButton {
+    width: 36px;
+    height: 36px;
+    background-color: var(--accent);
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #121212;
+    transition: opacity 0.2s;
+}
+
+.sendButton:hover {
+    opacity: 0.9;
+}
