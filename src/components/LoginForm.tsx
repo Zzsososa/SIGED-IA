@@ -9,14 +9,34 @@ import Button from './ui/Button';
 export default function LoginForm() {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
+    const [email, setEmail] = useState('victor@siged.ia');
+    const [password, setPassword] = useState('admin123');
+    const [error, setError] = useState<string | null>(null);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-        // Simulate login delay
-        setTimeout(() => {
-            router.push('/dashboard');
-        }, 800);
+        setError(null);
+
+        try {
+            const response = await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password }),
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                router.push('/dashboard');
+            } else {
+                setError(data.message || 'Credenciales incorrectas');
+            }
+        } catch (err) {
+            setError('Error de conexión con el servidor');
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -28,17 +48,21 @@ export default function LoginForm() {
 
             <div className={styles.fields}>
                 <Input
-                    label="Usuario"
-                    placeholder="admin"
-                    defaultValue="admin"
+                    label="Usuario (Email)"
+                    placeholder="victor@siged.ia"
+                    value={email}
+                    onChange={(e: any) => setEmail(e.target.value)}
                 />
                 <Input
                     label="Contraseña"
                     type="password"
                     placeholder="••••••••"
-                    defaultValue="123456"
+                    value={password}
+                    onChange={(e: any) => setPassword(e.target.value)}
                 />
             </div>
+
+            {error && <p className={styles.errorText} style={{ color: '#ff4d4d', fontSize: '0.875rem', marginTop: '0.5rem' }}>{error}</p>}
 
             <Button type="submit" disabled={loading} className="w-full">
                 {loading ? 'Accediendo...' : 'Ingresar'}

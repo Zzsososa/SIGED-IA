@@ -1,16 +1,42 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import { FileText, MoreHorizontal } from 'lucide-react';
 import styles from './DocumentTable.module.css';
 
-const documents = [
-    { id: 1, name: 'Borrador Contrato Servicios.docx', date: '04 Oct, 2024', size: '2.4 MB', type: 'DOCX' },
-    { id: 2, name: 'Declaración Jurada.pdf', date: '03 Oct, 2024', size: '1.1 MB', type: 'PDF' },
-    { id: 3, name: 'Notificación Juzgado.pdf', date: '01 Oct, 2024', size: '850 KB', type: 'PDF' },
-    { id: 4, name: 'Acta de Reunión.docx', date: '28 Sep, 2024', size: '1.8 MB', type: 'DOCX' },
-    { id: 5, name: 'Informe Preliminar Caso X.pdf', date: '25 Sep, 2024', size: '3.2 MB', type: 'PDF' },
-];
+interface Document {
+    id: string;
+    name: string;
+    date: string;
+    size: string;
+    type: string;
+}
 
 export default function DocumentTable() {
+    const [documents, setDocuments] = useState<Document[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchDocuments = async () => {
+            try {
+                const response = await fetch('/api/documents');
+                if (!response.ok) throw new Error('Failed to fetch documents');
+                const data = await response.json();
+                setDocuments(data);
+            } catch (err) {
+                setError(err instanceof Error ? err.message : 'An error occurred');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchDocuments();
+    }, []);
+
+    if (loading) return <div className={styles.loading}>Cargando documentos...</div>;
+    if (error) return <div className={styles.error}>{error}</div>;
+
     return (
         <div className={styles.container}>
             <table className={styles.table}>
