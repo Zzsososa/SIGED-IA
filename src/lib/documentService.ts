@@ -1,27 +1,69 @@
-// Mock data for the first advance
+import db from './db';
+
 export interface Document {
   id: string;
   name: string;
-  type: 'PDF' | 'DOCX' | 'XLSX';
+  type: string;
   date: string;
   size: string;
 }
 
-const mockDocuments: Document[] = [
-  { id: '1', name: 'Contrato de Arrendamiento - V.1.pdf', type: 'PDF', date: '15/02/2026', size: '1.2 MB' },
-  { id: '2', name: 'Acta Constitutiva - Grupo A.docx', type: 'DOCX', date: '14/02/2026', size: '850 KB' },
-  { id: '3', name: 'Presupuesto Trimestral 2026.xlsx', type: 'XLSX', date: '10/02/2026', size: '2.5 MB' },
-  { id: '4', name: 'Demanda Laboral - Expediente 45/26.pdf', type: 'PDF', date: '08/02/2026', size: '3.1 MB' },
-];
-
 export async function getDocuments(): Promise<Document[]> {
-  // Simulate DB latency
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(mockDocuments), 500);
-  });
+  try {
+    const stmt = db.prepare('SELECT * FROM documents ORDER BY id DESC');
+    const docs = stmt.all() as Document[];
+    return docs;
+  } catch (error) {
+    console.error('Error getting documents:', error);
+    return [];
+  }
 }
 
-export async function uploadDocument(doc: Document): Promise<Document> {
-  mockDocuments.unshift(doc);
-  return doc;
+export async function uploadDocument(doc: Omit<Document, 'id'>): Promise<Document> {
+  const newId = Math.random().toString(36).substr(2, 9);
+  const newDoc = { ...doc, id: newId };
+  
+  try {
+    const stmt = db.prepare('INSERT INTO documents (id, name, type, date, size) VALUES (?, ?, ?, ?, ?)');
+    stmt.run(newDoc.id, newDoc.name, newDoc.type, newDoc.date, newDoc.size);
+    return newDoc;
+  } catch (error) {
+    console.error('Error uploading document:', error);
+    throw error;
+  }
+}
+
+export async function deleteDocument(id: string): Promise<boolean> {
+  try {
+    const stmt = db.prepare('DELETE FROM documents WHERE id = ?');
+    const result = stmt.run(id);
+    return result.changes > 0;
+  } catch (error) {
+    console.error('Error deleting document:', error);
+    return false;
+  }
+}
+
+export async function updateDocument(id: string, updates: Partial<Document>): Promise<Document | null> {
+  try {
+    // Dynamically build update statement
+    const keys = Object.keys(updates).filter(k => k !== 'id');
+    if (keys.length === 0) return null;
+
+    const setClause = keys.map(k => `${k} = ?`).join(', ');
+    const values = keys.map(k => (updates as any)[k]);
+    values.push(id);
+
+    const stmt = db.prepare(`UPDATE documents SET ${setClause} WHERE id = ?`);
+    const result = stmt.run(...values);
+
+    if (result.changes > 0) {
+        const updated = db.prepare('SELECT * FROM documents WHERE id = ?').get(id) as Document;
+        return updated;
+    }
+    return null;
+  } catch (error) {
+    console.error('Error updating document:', error);
+    return null;
+  }
 }
