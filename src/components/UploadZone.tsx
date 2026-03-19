@@ -15,18 +15,12 @@ export default function UploadZone() {
         setIsUploading(true);
 
         try {
-            // Simulated upload data
-            const newDoc = {
-                name: file.name,
-                type: file.name.split('.').pop()?.toUpperCase() || 'PDF',
-                date: new Date().toLocaleDateString('es-MX'),
-                size: (file.size / 1024 / 1024).toFixed(1) + ' MB'
-            };
+            const formData = new FormData();
+            formData.append('file', file);
 
             const response = await fetch('/api/documents', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(newDoc),
+                body: formData,
             });
 
             if (response.ok) {
@@ -34,7 +28,8 @@ export default function UploadZone() {
                 window.dispatchEvent(new Event('document-added'));
                 if (fileInputRef.current) fileInputRef.current.value = '';
             } else {
-                alert('Error al subir el documento');
+                const errorData = await response.json();
+                alert(`Error al subir el documento: ${errorData.error || 'Error desconocido'}`);
             }
         } catch (err) {
             alert('Error de conexión');
@@ -65,7 +60,7 @@ export default function UploadZone() {
                     </>
                 )}
             </div>
-            <p className={styles.subtext}>PDF, DOCX, JPG (Max. 10MB)</p>
+            <p className={styles.subtext}>Cualquier archivo (Max. 10MB)</p>
         </div>
     );
 }

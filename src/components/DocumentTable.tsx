@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { FileText, MoreHorizontal, Trash2, Edit2, Check, X } from 'lucide-react';
+import { FileText, MoreHorizontal, Trash2, Edit2, Check, X, Download } from 'lucide-react';
 import styles from './DocumentTable.module.css';
 
 interface Document {
@@ -10,6 +10,7 @@ interface Document {
     date: string;
     size: string;
     type: string;
+    file_path?: string | null;
 }
 
 export default function DocumentTable() {
@@ -145,11 +146,20 @@ export default function DocumentTable() {
                                         </>
                                     ) : (
                                         <>
+                                            <button 
+                                                onClick={() => window.open(`/api/documents/download/${doc.id}`, '_blank')} 
+                                                className={styles.actionButton} 
+                                                title="Descargar"
+                                                disabled={!doc.file_path}
+                                                style={{ opacity: doc.file_path ? 1 : 0.3 }}
+                                            >
+                                                <Download size={18} />
+                                            </button>
                                             <button onClick={() => startEdit(doc)} className={styles.actionButton} title="Editar">
                                                 <Edit2 size={18} />
                                             </button>
                                             <button onClick={() => handleDelete(doc.id)} className={styles.actionButton} title="Eliminar">
-                                                <Trash2 size={18} style={{ color: '#ff4d4d' }} />
+                                                <Trash2 size={18} style={{ color: '#ff4d4d' }} style={{ color: '#ff4d4d' }} />
                                             </button>
                                         </>
                                     )}

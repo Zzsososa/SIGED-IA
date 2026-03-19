@@ -14,7 +14,8 @@ export function initDB() {
             name TEXT NOT NULL,
             type TEXT NOT NULL,
             date TEXT NOT NULL,
-            size TEXT NOT NULL
+            size TEXT NOT NULL,
+            file_path TEXT
         )
     `);
 
@@ -22,17 +23,17 @@ export function initDB() {
     const count = db.prepare('SELECT COUNT(*) as count FROM documents').get() as { count: number };
     
     if (count.count === 0) {
-        const insert = db.prepare('INSERT INTO documents (id, name, type, date, size) VALUES (?, ?, ?, ?, ?)');
+        const insert = db.prepare('INSERT INTO documents (id, name, type, date, size, file_path) VALUES (?, ?, ?, ?, ?, ?)');
         
         const initialDocs = [
-            { id: '1', name: 'Contrato de Arrendamiento - V.1.pdf', type: 'PDF', date: '15/02/2026', size: '1.2 MB' },
-            { id: '2', name: 'Acta Constitutiva - Grupo A.docx', type: 'DOCX', date: '14/02/2026', size: '850 KB' },
-            { id: '3', name: 'Presupuesto Trimestral 2026.xlsx', type: 'XLSX', date: '10/02/2026', size: '2.5 MB' },
-            { id: '4', name: 'Demanda Laboral - Expediente 45/26.pdf', type: 'PDF', date: '08/02/2026', size: '3.1 MB' },
+            { id: '1', name: 'Contrato de Arrendamiento - V.1.pdf', type: 'PDF', date: '15/02/2026', size: '1.2 MB', file_path: null },
+            { id: '2', name: 'Acta Constitutiva - Grupo A.docx', type: 'DOCX', date: '14/02/2026', size: '850 KB', file_path: null },
+            { id: '3', name: 'Presupuesto Trimestral 2026.xlsx', type: 'XLSX', date: '10/02/2026', size: '2.5 MB', file_path: null },
+            { id: '4', name: 'Demanda Laboral - Expediente 45/26.pdf', type: 'PDF', date: '08/02/2026', size: '3.1 MB', file_path: null },
         ];
 
         const insertMany = db.transaction((docs) => {
-            for (const doc of docs) insert.run(doc.id, doc.name, doc.type, doc.date, doc.size);
+            for (const doc of docs) insert.run(doc.id, doc.name, doc.type, doc.date, doc.size, doc.file_path);
         });
 
         insertMany(initialDocs);
